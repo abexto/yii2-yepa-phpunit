@@ -1,0 +1,24 @@
+{
+    "name": "helicon-os/yii2-hcy-phpunit",
+    "description": "PhpUnit Helper Class for Yii2",
+    "authors": [
+        {
+            "name": "Andreas Prucha, Helicon Software Development",
+            "email": "prucha@helicon.co.at"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "helicon\\hcyii2\\phpunit\\": "lib"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "helicon\\hcyii2\\tests\\phpunit\\": "tests"
+        }
+    }
+}
