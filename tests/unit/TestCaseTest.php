@@ -29,22 +29,29 @@
 namespace helicon\hcyii2\tests\phpunit\unit;
 
 /**
- * Description of ApplicationTestCase
+ * Description of Yii2TestCaseTest
  *
  * @author Andreas Prucha, Helicon Software Development
  */
-class ApplicationTestCase extends \helicon\hcyii2\phpunit\AbstractApplicationTestCase
+class TestCaseTest extends \helicon\hcyii2\phpunit\TestCase
 {
-    
-    protected function newApplicationMock()
+    public function testMockApplication()
     {
-        return $this->mockConsoleApplication([]);
+        $app = $this->mockApplication([], '\\yii\web\\Application');
+        $this->assertInstanceOf('\\yii\web\\Application', $app);
     }
     
-    public function testSetUp()
+    public function testMockWebApplication()
     {
-        $this->assertInstanceOf('\\yii\\base\\Application', $this->app);
+        $app = $this->mockWebApplication([]);
+        $this->assertInstanceOf('\\yii\web\\Application', $app);
     }
-
-
+    
+    public function testMockConsoleApplication()
+    {
+        $app = $this->mockConsoleApplication([]);
+        $this->assertInstanceOf('\\yii\console\\Application', $app);
+    }
+    
+    
 }

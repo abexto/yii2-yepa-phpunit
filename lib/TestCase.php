@@ -30,6 +30,12 @@ namespace helicon\hcyii2\phpunit;
 
 /**
  * Base PHP-Unit TestCase for Yii2 Applications
+ * 
+ * Yii2 Application Mockups can be created by calling {@link mockApplication()}
+ * 
+ * If an application instance is needed inside the whole test class, the best way is to
+ * create a member variable <code>$app</app> and initialize it in function {@link parent::setUpBeforeClass()}
+ * 
  *
  * @author Andreas Prucha, Helicon Software Development
  */

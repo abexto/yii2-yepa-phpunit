@@ -84,7 +84,7 @@ Assuming the namespace of the example above, the file should look like:
 ```
 namespace myapp\tests\unit;
 
-class AbstractTestCase extends \helicon\hcyii2\phpunit\TestCase
+class MyTest extends \helicon\hcyii2\phpunit\TestCase
 {
 
   public function testFoo()
@@ -100,3 +100,29 @@ Inside your test case you can create a Yii2-Application mockup by calling
 `$app = $this->mockWebApplication($configurationArray)`
 
 You need to pass an configuration-array as usually used in Yii2-Applications.
+
+If an Yii2 Application inststance is required in all tests of the test class, it's feasible to 
+override `setUpBeforeClass()`
+
+Example:
+
+```
+namespace myapp\tests\unit;
+
+class MyTest extends \helicon\hcyii2\phpunit\TestCase
+{
+
+    /**
+     * @var \yii\base\Application
+     */
+    protected $app;
+
+
+    public function setUpBeforeClass()
+    {
+      $this->app = $this->mockConsoleApplication([]);  // Pass your configuration here
+    } 
+
+
+}
+```
