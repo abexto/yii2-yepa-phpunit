@@ -33,7 +33,7 @@ namespace helicon\hcyii2\phpunit;
  *
  * @author Andreas Prucha, Helicon Software Development
  */
-class ApplicationTestCase extends TestCase
+abstract class ApplicationTestCase extends TestCase
 {
     
 }
