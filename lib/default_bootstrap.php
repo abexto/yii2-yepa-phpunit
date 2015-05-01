@@ -28,8 +28,8 @@
 
 
 if (!defined('HCYII2_PHPUNIT_VENDOR_DIR')) {
-    if (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
-        define('HCYII2_PHPUNIT_VENDOR_DIR', __DIR__ . '/../../../vendor');
+    if (file_exists(__DIR__ . '/../../../autoload.php')) {
+        define('HCYII2_PHPUNIT_VENDOR_DIR', __DIR__ . '/../../..');
     }
     elseif (file_exists(__DIR__ . '/../vendor/autoload.php')) {
         define('HCYII2_PHPUNIT_VENDOR_DIR', __DIR__ . '/../vendor');
