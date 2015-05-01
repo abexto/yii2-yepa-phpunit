@@ -38,7 +38,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     protected function mockApplication($config = [], $appClass)
     {
-        new $appClass(\yii\helpers\ArrayHelper::merge([
+      return new $appClass(\yii\helpers\ArrayHelper::merge([
                     'id' => 'testapp',
                     'basePath' => __DIR__,
                     'vendorPath' => HCYII2_PHPUNIT_VENDOR_DIR,
