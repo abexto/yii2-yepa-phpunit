@@ -1,7 +1,7 @@
 Simple PHPUnit-Helper for Yii2
 ==============================
 
-Andreas Prucha, Helicon Software Development
+Andreas Prucha, [Helicon Software Development](http://www.helicon.co.at)
 
 ** ATTENTION: ALPHA STATE **
 
