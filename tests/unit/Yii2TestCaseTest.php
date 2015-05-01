@@ -37,6 +37,21 @@ class Yii2TestCaseTest extends \helicon\hcyii2\phpunit\TestCase
 {
     public function testMockApplication()
     {
-        $app = $this->mockApplication([]);
+        $app = $this->mockApplication([], '\\yii\web\\Application');
+        assertInstanceOf('\\yii\web\\Application', $app);
     }
+    
+    public function testMockWebApplication()
+    {
+        $app = $this->mockWebApplication([]);
+        assertInstanceOf('\\yii\web\\Application', $app);
+    }
+    
+    public function testMockConsoleApplication()
+    {
+        $app = $this->mockConsoleApplication([]);
+        assertInstanceOf('\\yii\console\\Application', $app);
+    }
+    
+    
 }
