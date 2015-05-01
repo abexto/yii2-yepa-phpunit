@@ -26,32 +26,60 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace helicon\hcyii2\tests\phpunit\unit;
+namespace helicon\hcyii2\phpunit;
 
 /**
- * Description of Yii2TestCaseTest
+ * PHPUnit-Test which automatically creates an Yii2-App-Instance
  *
  * @author Andreas Prucha, Helicon Software Development
  */
-class Yii2TestCaseTest extends \helicon\hcyii2\phpunit\TestCase
+abstract class AbstractApplicationTestCase extends TestCase
 {
-    public function testMockApplication()
+    /**
+     * @var \yii\base\Application|\yii\console\Application|\yii\web\Application Application instance created by {@link setUp()}
+     */
+    protected $app;
+    
+    /**
+     * {@inheritDoc}
+     * 
+     * Calls {@link applicationSetUp()} if necessary
+     * 
+     * @see newApplicationMock()
+     * @see $app
+     */
+    protected function setUp()
     {
-        $app = $this->mockApplication([], '\\yii\web\\Application');
-        $this->assertInstanceOf('\\yii\web\\Application', $app);
+        parent::setUp();
+        if (!$this->app)
+        {
+            $this->applicationSetUp();
+        }
     }
     
-    public function testMockWebApplication()
+    /**
+     * Automatically creates an application-mockup when the fist test is executed by calling {@link newApplicationMock()}.
+     * This instance of the yii application can be accessed everywhere via <code>$this->app</code>
+     */
+    protected function applicationSetUp()
     {
-        $app = $this->mockWebApplication([]);
-        $this->assertInstanceOf('\\yii\web\\Application', $app);
+        $this->app = $this->newApplicationMock();
     }
-    
-    public function testMockConsoleApplication()
-    {
-        $app = $this->mockConsoleApplication([]);
-        $this->assertInstanceOf('\\yii\console\\Application', $app);
-    }
-    
+
+    /**
+     * Returns a the Application-Mockup for this Test-Case
+     * 
+     * This function is called automatically by {@link setUp()}
+     * 
+     * Override this function and return an Yii2-Application instance, e.g. 
+     * 
+     * <code>return $this->mockConsoleApplication([ ...... ]);
+     * 
+     * @return \yii\base\Application
+     * 
+     * @see setUp()
+     * @see $app
+     */
+    abstract protected function newApplicationMock();
     
 }

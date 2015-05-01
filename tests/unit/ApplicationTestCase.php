@@ -26,14 +26,25 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace helicon\hcyii2\phpunit;
+namespace helicon\hcyii2\tests\phpunit\unit;
 
 /**
  * Description of ApplicationTestCase
  *
  * @author Andreas Prucha, Helicon Software Development
  */
-abstract class ApplicationTestCase extends TestCase
+class ApplicationTestCase extends \helicon\hcyii2\phpunit\AbstractApplicationTestCase
 {
     
+    protected function newApplicationMock()
+    {
+        return $this->mockConsoleApplication([]);
+    }
+    
+    public function testSetUp()
+    {
+        $this->assertInstanceOf('\\yii\\base\\Application', $this->app);
+    }
+
+
 }
