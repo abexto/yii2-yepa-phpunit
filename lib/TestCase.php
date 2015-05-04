@@ -33,32 +33,128 @@ namespace helicon\hcyii2\phpunit;
  * 
  * Yii2 Application Mockups can be created by calling {@link mockApplication()}
  * 
- * If an application instance is needed inside the whole test class, the best way is to
- * create a member variable <code>$app</app> and initialize it in function {@link parent::setUpBeforeClass()}
+ * In order to initialize a mock application automatically, you can set {@link $autoSetUpMockApplication} to 
+ * <code>true</code> and override {@link setUpMockApplication()}
  * 
+ * if {@link $autoTearDownMockApplication} is set to <code>true</code>, the Yii mock application will
+ * be destroyed after every test. 
  *
  * @author Andreas Prucha, Helicon Software Development
  */
 class TestCase extends \PHPUnit_Framework_TestCase
 {
 
-    protected function mockApplication($config = [], $appClass)
+    /**
+     * @var bool Yii Mock Application gets teared down after each test automatically
+     */
+    protected $autoTearDownMockApplication = true;
+
+
+    /**
+     * Called before each test for preparation
+     * 
+     * <b>Hint:</b>
+     * If a Yii mock application is required in all tests, it can be set up here by calling
+     * <code>
+     * <?php
+     * if (!\Yii::$app) {
+     *     $this->mockConsoleApplication([/* Your config array{@*}/]);
+     * }
+     * ?>
+     * </code>
+     * 
+     * If {@link $autoTearDownMockApplication} is set to true, the mock application instance will
+     * be destroyed after each test.
+     * 
+     */
+    
+    protected function setUp()
     {
-      return new $appClass(\yii\helpers\ArrayHelper::merge([
+        parent::setUp();
+    }
+
+    /**
+     * {@inheritDoc}
+     * 
+     * Automatically destroys the Yii mock application if {@link $autoTearDownMockApplication} is set to <code>TRUE</code>
+     * 
+     */
+    protected function tearDown()
+    {
+        if ($this->autoTearDownMockApplication) {
+            $this->tearDownMockApplication();
+        }
+        parent::tearDown();
+    }
+
+    /**
+     * Destroys the current Mock Application instance
+     */
+    protected function tearDownMockApplication()
+    {
+        \Yii::$app = null;
+    }
+
+    /**
+     * Override this function in order to let {@link setUp()} create a Yii Mock Application
+     * 
+     * <b>Example:</b>
+     * <pre>
+     * <code>
+     *      protected function setUpMockApplication()
+     *      {
+     *          self::mockConsoleApplication($myConfigurationArray);
+     *      }
+     * </code>
+     * </pre>
+     */
+    protected function setUpMockApplication()
+    {
+        $this->fail('Override ' . __CLASS__ . '::' . __METHOD__);
+    }
+
+    /**
+     * Creates a Yii2 Application if necessary instance and sets Yii::$app
+     * 
+     * @param type $config Configuration array 
+     * @param type $appClass Yii2 Application class to use
+     * @param bool $recreate Set to true in order to destroy the previous instance
+     */
+    protected static function mockApplication($config = [], $appClass, $recreate = false)
+    {
+        if (\Yii::$app && !$recreate) {
+            $this->fail('Yii mock application is already initialized');
+        }
+        if ($recreate) {
+            \Yii::$app = null;
+        }
+        new $appClass(\yii\helpers\ArrayHelper::merge([
                     'id' => 'testapp',
                     'basePath' => __DIR__,
                     'vendorPath' => HCYII2_PHPUNIT_VENDOR_DIR,
                         ], $config));
     }
-    
-    protected function mockWebApplication($config = [])
+
+    /**
+     * Creates a Yii2 Web Application if necessary instance and sets Yii::$app
+     * 
+     * @param type $config
+     * @param bool $recreate Set to true in order to destroy the previous instance
+     */
+    protected static function mockWebApplication($config = [], $recreate = false)
     {
-        return $this->mockApplication($config, '\yii\web\Application');
+        self::mockApplication($config, '\yii\web\Application', $recreate);
     }
-    
-    protected function mockConsoleApplication($config = [])
+
+    /**
+     * Creates a Yii2 Console Application if necessary instance and sets Yii::$app
+     * 
+     * @param type $config
+     * @param bool $recreate Set to true in order to destroy the previous instance
+     */
+    protected static function mockConsoleApplication($config = [], $recreate = false)
     {
-        return $this->mockApplication($config, '\yii\console\Application');
+        self::mockApplication($config, '\yii\console\Application', $recreate);
     }
 
 }

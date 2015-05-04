@@ -35,23 +35,48 @@ namespace helicon\hcyii2\tests\phpunit\unit;
  */
 class TestCaseTest extends \helicon\hcyii2\phpunit\TestCase
 {
+    
+    public function testAutoTearDownTrueByDefault()
+    {
+        $this->assertTrue($this->autoTearDownMockApplication);
+    }
+    
+    
     public function testMockApplication()
     {
-        $app = $this->mockApplication([], '\\yii\web\\Application');
-        $this->assertInstanceOf('\\yii\web\\Application', $app);
+        self::mockApplication([], '\\yii\web\\Application');
+        $this->assertInstanceOf('\\yii\web\\Application', \Yii::$app);
     }
     
     public function testMockWebApplication()
     {
-        $app = $this->mockWebApplication([]);
-        $this->assertInstanceOf('\\yii\web\\Application', $app);
+        $this->mockWebApplication([]);
+        $this->assertInstanceOf('\\yii\web\\Application', \Yii::$app);
     }
     
     public function testMockConsoleApplication()
     {
-        $app = $this->mockConsoleApplication([]);
-        $this->assertInstanceOf('\\yii\console\\Application', $app);
+        self::mockConsoleApplication([]);
+        $this->assertInstanceOf('\\yii\console\\Application', \Yii::$app);
     }
+    
+    public function testAutoTearDownMockApplication()
+    {
+        $this->assertNull(\Yii::$app);
+    }
+    
+    public function testSetAutoTearDownToFalse1()
+    {
+        self::mockConsoleApplication([]);
+        $this->autoTearDownMockApplication = false;
+    }
+    
+    public function testSetAutoTearDownToFalse2()
+    {
+        $this->assertNotNull(\Yii::$app);
+    }
+    
+    
     
     
 }
