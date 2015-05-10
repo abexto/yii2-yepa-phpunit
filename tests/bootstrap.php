@@ -26,4 +26,5 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+define ('HCYII2_PHPUNIT_TEST_DIR', __DIR__);
 require_once __DIR__.'/../lib/default_bootstrap.php';

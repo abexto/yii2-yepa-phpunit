@@ -76,6 +76,13 @@ class TestCaseTest extends \helicon\hcyii2\phpunit\TestCase
         $this->assertNotNull(\Yii::$app);
     }
     
+    public function testRuntimeAliasExists()
+    {
+        $this->assertNotFalse(\Yii::getAlias('@runtime', false));
+    }
+    
+    
+    
     
     
     

@@ -49,7 +49,6 @@ class TestCase extends \PHPUnit_Framework_TestCase
      */
     protected $autoTearDownMockApplication = true;
 
-
     /**
      * Called before each test for preparation
      * 
@@ -67,7 +66,6 @@ class TestCase extends \PHPUnit_Framework_TestCase
      * be destroyed after each test.
      * 
      */
-    
     protected function setUp()
     {
         parent::setUp();
@@ -85,6 +83,26 @@ class TestCase extends \PHPUnit_Framework_TestCase
             $this->tearDownMockApplication();
         }
         parent::tearDown();
+    }
+
+    /**
+     * Returns the default configuration for all Yii mock applications
+     */
+    protected function getMockApplicationDefaultConfig()
+    {
+        if (!defined('HCYII2_PHPUNIT_TEST_DIR'))
+        {
+            throw new \Exception('HCYII2_PHPUNIT_TEST_DIR is not defined');
+        }
+        return [
+            'id' => 'testapp',
+            'basePath' => HCYII2_PHPUNIT_TEST_DIR,
+            'vendorPath' => HCYII2_PHPUNIT_VENDOR_DIR,
+            'aliases' => [
+                '@testoutput' => HCYII2_PHPUNIT_TEST_DIR.'/_output',
+                '@runtime' => '@testoutput/runtime',
+            ]
+        ];
     }
 
     /**
@@ -120,7 +138,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
      * @param type $appClass Yii2 Application class to use
      * @param bool $recreate Set to true in order to destroy the previous instance
      */
-    protected static function mockApplication($config = [], $appClass, $recreate = false)
+    protected function mockApplication($config = [], $appClass, $recreate = false)
     {
         if (\Yii::$app && !$recreate) {
             $this->fail('Yii mock application is already initialized');
@@ -128,11 +146,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
         if ($recreate) {
             \Yii::$app = null;
         }
-        new $appClass(\yii\helpers\ArrayHelper::merge([
-                    'id' => 'testapp',
-                    'basePath' => __DIR__,
-                    'vendorPath' => HCYII2_PHPUNIT_VENDOR_DIR,
-                        ], $config));
+        new $appClass(\yii\helpers\ArrayHelper::merge($this->getMockApplicationDefaultConfig(), $config));
     }
 
     /**
@@ -141,9 +155,9 @@ class TestCase extends \PHPUnit_Framework_TestCase
      * @param type $config
      * @param bool $recreate Set to true in order to destroy the previous instance
      */
-    protected static function mockWebApplication($config = [], $recreate = false)
+    protected function mockWebApplication($config = [], $recreate = false)
     {
-        self::mockApplication($config, '\yii\web\Application', $recreate);
+        $this->mockApplication($config, '\yii\web\Application', $recreate);
     }
 
     /**
@@ -152,9 +166,9 @@ class TestCase extends \PHPUnit_Framework_TestCase
      * @param type $config
      * @param bool $recreate Set to true in order to destroy the previous instance
      */
-    protected static function mockConsoleApplication($config = [], $recreate = false)
+    protected function mockConsoleApplication($config = [], $recreate = false)
     {
-        self::mockApplication($config, '\yii\console\Application', $recreate);
+        $this->mockApplication($config, '\yii\console\Application', $recreate);
     }
 
 }
