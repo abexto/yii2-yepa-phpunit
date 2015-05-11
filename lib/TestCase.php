@@ -101,6 +101,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
             'aliases' => [
                 '@testoutput' => HCYII2_PHPUNIT_TEST_DIR.'/_output',
                 '@runtime' => '@testoutput/runtime',
+                '@app' => HCYII2_PHPUNIT_TEST_DIR.'/data/app',
             ]
         ];
     }
