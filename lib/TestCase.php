@@ -96,7 +96,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
         }
         return [
             'id' => 'testapp',
-            'basePath' => HCYII2_PHPUNIT_TEST_DIR.'/data/app',
+            'basePath' => HCYII2_PHPUNIT_TEST_DIR,
             'vendorPath' => HCYII2_PHPUNIT_VENDOR_DIR,
             'runtimePath' => HCYII2_PHPUNIT_TEST_DIR.'/_output/runtime',
             'aliases' => [
