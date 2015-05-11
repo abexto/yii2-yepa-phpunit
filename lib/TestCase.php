@@ -96,12 +96,11 @@ class TestCase extends \PHPUnit_Framework_TestCase
         }
         return [
             'id' => 'testapp',
-            'basePath' => HCYII2_PHPUNIT_TEST_DIR,
+            'basePath' => HCYII2_PHPUNIT_TEST_DIR.'/data/app',
             'vendorPath' => HCYII2_PHPUNIT_VENDOR_DIR,
+            'runtimePath' => HCYII2_PHPUNIT_TEST_DIR.'/_output/runtime',
             'aliases' => [
-                '@testoutput' => HCYII2_PHPUNIT_TEST_DIR.'/_output',
-                '@runtime' => '@testoutput/runtime',
-                '@app' => HCYII2_PHPUNIT_TEST_DIR.'/data/app',
+                '@testsroot' => HCYII2_PHPUNIT_TEST_DIR,
             ]
         ];
     }
