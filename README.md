@@ -98,10 +98,12 @@ class MyTest extends \abexto\yepa\phpunit\TestCase
 
 Inside your test case you can create a Yii2-Application mockup by calling
 
-`$app = $this->mockConsoleApplication($configurationArray)` or 
-`$app = $this->mockWebApplication($configurationArray)`
+`$this->mockConsoleApplication($configurationArray)` or 
+`$this->mockWebApplication($configurationArray)`
 
 You need to pass an configuration-array as usually used in Yii2-Applications.
+
+After creating an application mockup, the Yii application instance can be accessed as usual via `\Yii::$app`.
 
 If an Yii2 Application inststance is required in all tests of the test class, it's feasible to 
 override `setUpBeforeClass()`
@@ -114,15 +116,9 @@ namespace myapp\tests\unit;
 class MyTest extends \abexto\yepa\phpunit\TestCase
 {
 
-    /**
-     * @var \yii\base\Application
-     */
-    protected $app;
-
-
     public function setUpBeforeClass()
     {
-      $this->app = $this->mockConsoleApplication([]);  // Pass your configuration here
+      $this->mockConsoleApplication([]);  // Pass your configuration here
     } 
 
 
