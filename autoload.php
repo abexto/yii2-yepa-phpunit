@@ -1,7 +1,7 @@
 <?php
 
-/*
- * Copyright (c) 2015, Andreas Prucha, Helicon Software Development
+/* 
+ * Copyright (c) 2015, Andreas Prucha, Abexto - Helicon Software Development
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,17 +26,16 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-
-if (!defined('HCYII2_PHPUNIT_VENDOR_DIR')) {
-    if (file_exists(__DIR__ . '/../../../autoload.php')) {
-        define('HCYII2_PHPUNIT_VENDOR_DIR', __DIR__ . '/../../..');
+if (!defined('ABEXTO_YEPA_PHPUNIT_VENDOR_DIR')) {
+    if (file_exists(__DIR__ . '/../..autoload.php')) {
+        define('ABEXTO_YEPA_PHPUNIT_VENDOR_DIR', __DIR__ . '/../..');
     }
-    elseif (file_exists(__DIR__ . '/../vendor/autoload.php')) {
-        define('HCYII2_PHPUNIT_VENDOR_DIR', __DIR__ . '/../vendor');
+    elseif (file_exists(__DIR__ . '/vendor/autoload.php')) {
+        define('ABEXTO_YEPA_PHPUNIT_VENDOR_DIR', __DIR__ . '/vendor');
     }
 }
 
-if (!defined('HCYII2_PHPUNIT_VENDOR_DIR'))
+if (!defined('ABEXTO_YEPA_PHPUNIT_VENDOR_DIR'))
 {
     throw new \Exception('Vendor dir not found');
 }
@@ -44,11 +43,5 @@ if (!defined('HCYII2_PHPUNIT_VENDOR_DIR'))
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'test');
 
-require_once(HCYII2_PHPUNIT_VENDOR_DIR . '/autoload.php');
-require_once(HCYII2_PHPUNIT_VENDOR_DIR . '/yiisoft/yii2/Yii.php');
+require_once(ABEXTO_YEPA_PHPUNIT_VENDOR_DIR . '/autoload.php');
 
-\Yii::setAlias('@helicon\\hcyii2\\phpunit', dirname(__DIR__));
-if (defined('HCYII2_PHPUNIT_TEST_NAMESPACE') &&
-        (!\Yii::getAlias('@' . HCYII2_PHPUNIT_TEST_NAMESPACE, false))) {
-    \Yii::setAlias('@' . HCYII2_PHPUNIT_TEST_NAMESPACE, HCYII2_PHPUNIT_TEST_DIR);
-}

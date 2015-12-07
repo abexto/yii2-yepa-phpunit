@@ -1,9 +1,9 @@
 {
-    "name": "helicon-os/yii2-hcy-phpunit",
-    "description": "PhpUnit Helper Class for Yii2",
+    "name": "abexto/yii2-yepa-phpunit",
+    "description": "PhpUnit Helper Class for Yii2 Projects",
     "authors": [
         {
-            "name": "Andreas Prucha, Helicon Software Development",
+            "name": "Andreas Prucha, Abexto (Helicon Software Development)",
             "email": "prucha@helicon.co.at"
         }
     ],
@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "helicon\\hcyii2\\phpunit\\": "lib"
+            "abexto\\yepa\\phpunit\\": "lib"
         }
     },
     "autoload-dev": {

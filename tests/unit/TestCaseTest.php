@@ -33,7 +33,7 @@ namespace helicon\hcyii2\tests\phpunit\unit;
  *
  * @author Andreas Prucha, Helicon Software Development
  */
-class TestCaseTest extends \helicon\hcyii2\phpunit\TestCase
+class TestCaseTest extends \abexto\yepa\phpunit\TestCase
 {
     
     public function testAutoTearDownTrueByDefault()

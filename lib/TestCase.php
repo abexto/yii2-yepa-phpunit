@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2015, Andreas Prucha, Helicon Software Development
+ * Copyright (c) 2015, Andreas Prucha, Abexto - Helicon Software Development
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,7 +26,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace helicon\hcyii2\phpunit;
+namespace abexto\yepa\phpunit;
 
 /**
  * Base PHP-Unit TestCase for Yii2 Applications
@@ -90,17 +90,17 @@ class TestCase extends \PHPUnit_Framework_TestCase
      */
     protected function getMockApplicationDefaultConfig()
     {
-        if (!defined('HCYII2_PHPUNIT_TEST_DIR'))
+        if (!defined('ABEXTO_YEPA_PHPUNIT_TEST_DIR'))
         {
-            throw new \Exception('HCYII2_PHPUNIT_TEST_DIR is not defined');
+            throw new \Exception('ABEXTO_YEPA_PHPUNIT_TEST_DIR is not defined');
         }
         return [
             'id' => 'testapp',
-            'basePath' => HCYII2_PHPUNIT_TEST_DIR,
-            'vendorPath' => HCYII2_PHPUNIT_VENDOR_DIR,
-            'runtimePath' => HCYII2_PHPUNIT_TEST_DIR.'/_output/runtime',
+            'basePath' => ABEXTO_YEPA_PHPUNIT_TEST_DIR,
+            'vendorPath' => ABEXTO_YEPA_PHPUNIT_VENDOR_DIR,
+            'runtimePath' => ABEXTO_YEPA_PHPUNIT_TEST_DIR.'/_output/runtime',
             'aliases' => [
-                '@testsroot' => HCYII2_PHPUNIT_TEST_DIR,
+                '@testsroot' => ABEXTO_YEPA_PHPUNIT_TEST_DIR,
             ]
         ];
     }

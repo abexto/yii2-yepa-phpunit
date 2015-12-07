@@ -1,7 +1,7 @@
 <?php
 
-/* 
- * Copyright (c) 2015, Andreas Prucha, Helicon Software Development
+/*
+ * Copyright (c) 2015, Andreas Prucha, Abexto - Helicon Software Development
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,6 +26,38 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-define ('ABEXTO_YEPA_PHPUNIT_TEST_DIR', __DIR__);
-require_once __DIR__.'/../autoload.php';
-\abexto\yepa\phpunit\Bootstrap::init();
+namespace abexto\yepa\phpunit;
+
+/**
+ * Description of Bootstrap
+ *
+ * @author Andreas Prucha, Abexto - Helicon Software Development
+ */
+class Bootstrap
+{
+    
+    /**
+     * Initializes the Yii environment for PhpUnit Tests
+     * 
+     * - yii:       Php File containing the Yii class declaration 
+     *              (Default: ABEXTO_YEPA_PHPUNIT_VENDOR_DIR . '/yiisoft/yii2/Yii.php')
+     * - aliases:   Associative array of alias => path pairs. The following aliases are declared by default:
+     *              -     
+     *              
+     * 
+     * @param type $params
+     */
+    public static function init(array $params = [])
+    {
+        $params = array_merge(
+                [
+                    'yii' => ABEXTO_YEPA_PHPUNIT_VENDOR_DIR . '/yiisoft/yii2/Yii.php',
+                    'aliases' => []
+                ], $params
+        );
+        
+        require_once(ABEXTO_YEPA_PHPUNIT_VENDOR_DIR . '/yiisoft/yii2/Yii.php');
+        
+    }
+    
+}
