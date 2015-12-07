@@ -1,9 +1,11 @@
 {
     "name": "abexto/yii2-yepa-phpunit",
     "description": "PhpUnit Helper Class for Yii2 Projects",
+    "type": "yii2-extension",
+    "keywords": ["yii", "yii2", "tests", "PhpUnit"],
     "authors": [
         {
-            "name": "Andreas Prucha, Abexto (Helicon Software Development)",
+            "name": "Andreas Prucha, Abexto - Helicon Software Development",
             "email": "prucha@helicon.co.at"
         }
     ],

@@ -1,4 +1,4 @@
-Copyright (c) 2015, Andreas Prucha, Helicon Software Development
+Copyright (c) 2015, Andreas Prucha, Abexto - Helicon Software Development
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

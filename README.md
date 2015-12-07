@@ -1,10 +1,9 @@
 Simple PHPUnit-Helper for Yii2
 ==============================
 
-Andreas Prucha, [Helicon Software Development](http://www.helicon.co.at)
+Andreas Prucha, [Abexto - Helicon Software Development](http://www.helicon.co.at)
 
-** ATTENTION: ALPHA STATE **
-
+** ATTENTION: UNDER DEVELOPMENT **
 
 This Yii2-Extension provides an easy way to write PhpUnit-Tests for Yii2.
 
@@ -23,7 +22,7 @@ in composer.json:
     "repositories": [
         {
             "type": "vcs",
-            "url":  "https://github.com/helicon-os/yii2-hcy-phpunit.git"
+            "url":  "https://github.com/abexto/yii2-yepa-phpunit.git"
         }
     ]
 ```
@@ -31,7 +30,7 @@ in composer.json:
 Add
 
 ```
-"helicon-os/yii2-hcy-phpunit": "*"
+"abexto/yii2-yepa-phpunit": "*"
 ```
 
 to the require-dev section of your `composer.json` file.
@@ -53,10 +52,13 @@ The following directory structure is used in this example
 `composer.json`: Composer file
 
 
-Inside the tests directory `bootstrap.php` with the following content:
+For simple test cases create a file named `bootstrap.php` in the tests directory with the following content:
 
 ```
-require_once __DIR__.'/../vendor/helicon-os/yii2-hcy-phpunit/lib/default_bootstrap.php';
+define ('ABEXTO_YEPA_PHPUNIT_TEST_DIR', __DIR__);
+require_once __DIR__.'/../vendor/abexto/yii2-yepa-phpunit/autoload.php';
+\abexto\yepa\phpunit\Bootstrap::init();
+
 ``'
 
 ATTENTION: If you use another directory structure make sure, that the path is correct.
@@ -84,7 +86,7 @@ Assuming the namespace of the example above, the file should look like:
 ```
 namespace myapp\tests\unit;
 
-class MyTest extends \helicon\hcyii2\phpunit\TestCase
+class MyTest extends \abexto\yepa\phpunit\TestCase
 {
 
   public function testFoo()
@@ -109,7 +111,7 @@ Example:
 ```
 namespace myapp\tests\unit;
 
-class MyTest extends \helicon\hcyii2\phpunit\TestCase
+class MyTest extends \abexto\yepa\phpunit\TestCase
 {
 
     /**
