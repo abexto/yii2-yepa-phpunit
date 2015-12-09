@@ -20,7 +20,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "helicon\\hcyii2\\tests\\phpunit\\": "tests"
+            "abexto\\yepa\\phpunit\\tests\\": "tests"
         }
     }
 }

@@ -26,7 +26,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace helicon\hcyii2\tests\phpunit\unit;
+namespace abexto\yepa\phpunit\tests\unit;
 
 /**
  * Description of Yii2TestCaseTest
