@@ -10,8 +10,7 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "*",
-        "phpunit/phpunit": "*"
+        "yiisoft/yii2": "*"
     },
     "autoload": {
         "psr-4": {
