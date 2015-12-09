@@ -27,7 +27,7 @@
  */
 
 if (!defined('ABEXTO_YEPA_PHPUNIT_VENDOR_DIR')) {
-    if (file_exists(__DIR__ . '/../..autoload.php')) {
+    if (file_exists(__DIR__ . '/../../autoload.php')) {
         define('ABEXTO_YEPA_PHPUNIT_VENDOR_DIR', __DIR__ . '/../..');
     }
     elseif (file_exists(__DIR__ . '/vendor/autoload.php')) {
