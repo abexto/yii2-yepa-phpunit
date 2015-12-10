@@ -36,34 +36,39 @@ namespace abexto\yepa\phpunit;
 class Bootstrap
 {
     /**
-     * @var string  Test directory. This value is set in [[init()]].
+     * @var string  Test directory. This value is set in [[init]].
+     * @see init
      */
     public static $testPath = null;
 
     /**
      * @var string  Yii application Base path  
+     * @see init
      */
     public static $basePath = null;
     
     /**
      * @var string Runtime path
+     * @see init
      */
     public static $runtimePath = null;
     
     /**
      * @var string Vendor path
+     * @see init
      */
     public static $vendorPath = null;
     
     /**
      * @var array Default aliases
+     * @see init
      */
     public static $aliases = [];
     
     /**
      * Initializes the Yii environment for PhpUnit Tests
      * 
-     * - basePath       Base path used for mockup applications. This value is used for [[static::$basePath]] (Defaults to testPath)
+     * - basePath       Base path used for mockup applications. This value is used for [[basePath]] (Defaults to testPath)
      * - vendorPath     The directory that stores vendor files 
      *                  (Defaults to the value of the global ABEXTO_YEPA_PHPUNIT_VENDOR_DIR define)  
      * - runtimePath    Runtime directory used for tests (Defaults to "_output/runtime" in the test directory)
