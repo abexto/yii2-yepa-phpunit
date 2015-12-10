@@ -48,7 +48,7 @@ class Bootstrap
     /**
      * Initializes the Yii environment for PhpUnit Tests
      * 
-     * - basePath       Base path used for mockup applications (Defaults to testPath)
+     * - basePath       Base path used for mockup applications. This value is used for [[static::$basePath]] (Defaults to testPath)
      * - vendorPath     The directory that stores vendor files 
      *                  (Defaults to the value of the global ABEXTO_YEPA_PHPUNIT_VENDOR_DIR define)  
      * - runtimePath    Runtime directory used for tests (Defaults to "_output/runtime" in the test directory)
