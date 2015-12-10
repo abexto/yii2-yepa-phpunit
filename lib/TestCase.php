@@ -43,6 +43,7 @@ namespace abexto\yepa\phpunit;
  */
 class TestCase extends \PHPUnit_Framework_TestCase
 {
+    use MockApplicationTrait;
 
     /**
      * @var bool Yii Mock Application gets teared down after each test automatically
@@ -85,90 +86,5 @@ class TestCase extends \PHPUnit_Framework_TestCase
         parent::tearDown();
     }
 
-    /**
-     * Returns the default configuration for all Yii mock applications
-     */
-    protected function getMockApplicationDefaultConfig()
-    {
-        if (!defined('ABEXTO_YEPA_PHPUNIT_TEST_DIR'))
-        {
-            throw new \Exception('ABEXTO_YEPA_PHPUNIT_TEST_DIR is not defined');
-        }
-        return [
-            'id' => 'testapp',
-            'basePath' => ABEXTO_YEPA_PHPUNIT_TEST_DIR,
-            'vendorPath' => ABEXTO_YEPA_PHPUNIT_VENDOR_DIR,
-            'runtimePath' => ABEXTO_YEPA_PHPUNIT_TEST_DIR.'/_output/runtime',
-            'aliases' => [
-                '@testsroot' => ABEXTO_YEPA_PHPUNIT_TEST_DIR,
-            ]
-        ];
-    }
-
-    /**
-     * Destroys the current Mock Application instance
-     */
-    protected function tearDownMockApplication()
-    {
-        \Yii::$app = null;
-    }
-
-    /**
-     * Override this function in order to let {@link setUp()} create a Yii Mock Application
-     * 
-     * <b>Example:</b>
-     * <pre>
-     * <code>
-     *      protected function setUpMockApplication()
-     *      {
-     *          self::mockConsoleApplication($myConfigurationArray);
-     *      }
-     * </code>
-     * </pre>
-     */
-    protected function setUpMockApplication()
-    {
-        $this->fail('Override ' . __CLASS__ . '::' . __METHOD__);
-    }
-
-    /**
-     * Creates a Yii2 Application if necessary instance and sets Yii::$app
-     * 
-     * @param type $config Configuration array 
-     * @param type $appClass Yii2 Application class to use
-     * @param bool $recreate Set to true in order to destroy the previous instance
-     */
-    protected function mockApplication($config = [], $appClass, $recreate = false)
-    {
-        if (\Yii::$app && !$recreate) {
-            $this->fail('Yii mock application is already initialized');
-        }
-        if ($recreate) {
-            \Yii::$app = null;
-        }
-        new $appClass(\yii\helpers\ArrayHelper::merge($this->getMockApplicationDefaultConfig(), $config));
-    }
-
-    /**
-     * Creates a Yii2 Web Application if necessary instance and sets Yii::$app
-     * 
-     * @param type $config
-     * @param bool $recreate Set to true in order to destroy the previous instance
-     */
-    protected function mockWebApplication($config = [], $recreate = false)
-    {
-        $this->mockApplication($config, '\yii\web\Application', $recreate);
-    }
-
-    /**
-     * Creates a Yii2 Console Application if necessary instance and sets Yii::$app
-     * 
-     * @param type $config
-     * @param bool $recreate Set to true in order to destroy the previous instance
-     */
-    protected function mockConsoleApplication($config = [], $recreate = false)
-    {
-        $this->mockApplication($config, '\yii\console\Application', $recreate);
-    }
 
 }
