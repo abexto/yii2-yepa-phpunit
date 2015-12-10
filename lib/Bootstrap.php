@@ -41,13 +41,13 @@ class Bootstrap
     
     public static $runtimePath = null;
     
+    public static $vendorPath = null;
+    
     public static $aliases = [];
     
     /**
      * Initializes the Yii environment for PhpUnit Tests
      * 
-     * - testPath       Tests directory. This parameter is mandatory. If your bootstrap-file is located
-     *                  in the tests root directory, pass `['testRoot' => __DIR__]`
      * - basePath       Base path used for mockup applications (Defaults to testPath)
      * - vendorPath     The directory that stores vendor files 
      *                  (Defaults to the value of the global ABEXTO_YEPA_PHPUNIT_VENDOR_DIR define)  
@@ -61,15 +61,15 @@ class Bootstrap
      *              -     
      * The following aliases are defined automatically if not automatically declared:
      * 
+     * @param string    Test directory. If your bootstrap-file is located
+     *                  in the tests root directory, pass `['testRoot' => __DIR__]`
      * @param type $params
      */
-    public static function init(array $params = [])
+    public static function init($testPath, array $params = [])
     {
-        if (!isset($params['testPath'])) {
-            throw new InvalidBootstrapConfigException('Parameter "testPath" is not defined');
-        }
+        static::$testPath = $testPath;
         
-        static::$testPath = $params['testPath'];
+        static::$basePath = (isset($params['basePath']) ? $params['basePath'] : static::$testPath);
         static::$aliases = (isset($params['aliases']) ? $params['aliases'] : []);
         static::$vendorPath = (isset($params['vendorPath']) ? $params['vendorPath'] : ABEXTO_YEPA_PHPUNIT_VENDOR_DIR);
         static::$runtimePath = (isset($params['runtimePath']) ? $params['runtimePath'] : static::$testPath.'/_output/runtime');

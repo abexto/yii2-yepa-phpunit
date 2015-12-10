@@ -26,6 +26,5 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-define ('ABEXTO_YEPA_PHPUNIT_TEST_DIR', __DIR__);
 require_once __DIR__.'/../autoload.php';
-\abexto\yepa\phpunit\Bootstrap::init();
+\abexto\yepa\phpunit\Bootstrap::init(__DIR__);
