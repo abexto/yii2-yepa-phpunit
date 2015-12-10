@@ -35,14 +35,29 @@ namespace abexto\yepa\phpunit;
  */
 class Bootstrap
 {
+    /**
+     * @var string  Test directory. This value is set in [[init()]].
+     */
     public static $testPath = null;
-    
+
+    /**
+     * @var string  Yii application Base path  
+     */
     public static $basePath = null;
     
+    /**
+     * @var string Runtime path
+     */
     public static $runtimePath = null;
     
+    /**
+     * @var string Vendor path
+     */
     public static $vendorPath = null;
     
+    /**
+     * @var array Default aliases
+     */
     public static $aliases = [];
     
     /**
