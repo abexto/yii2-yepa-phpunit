@@ -40,18 +40,11 @@ trait MockApplicationTrait
      */
     protected function getMockApplicationDefaultConfig()
     {
-        if (!defined('ABEXTO_YEPA_PHPUNIT_TEST_DIR'))
-        {
-            throw new \Exception('ABEXTO_YEPA_PHPUNIT_TEST_DIR is not defined');
-        }
         return [
             'id' => 'testapp',
             'basePath' => ABEXTO_YEPA_PHPUNIT_TEST_DIR,
             'vendorPath' => ABEXTO_YEPA_PHPUNIT_VENDOR_DIR,
             'runtimePath' => ABEXTO_YEPA_PHPUNIT_TEST_DIR.'/_output/runtime',
-            'aliases' => [
-                '@testsroot' => ABEXTO_YEPA_PHPUNIT_TEST_DIR,
-            ]
         ];
     }
 
