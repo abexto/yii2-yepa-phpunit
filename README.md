@@ -48,6 +48,7 @@ The following directory structure is used in this example
 `lib`: All regular component classes go there
 `tests`: The PHPUnit-Tests for the extension
   `unit`: Test Cases
+  `_output`: Test output directory
   `bootstrap.php`: Bootstrap file for the test cases
 `composer.json`: Composer file
 
@@ -55,9 +56,8 @@ The following directory structure is used in this example
 For simple test cases create a file named `bootstrap.php` in the tests directory with the following content:
 
 ```
-define ('ABEXTO_YEPA_PHPUNIT_TEST_DIR', __DIR__);
 require_once __DIR__.'/../vendor/abexto/yii2-yepa-phpunit/autoload.php';
-\abexto\yepa\phpunit\Bootstrap::init();
+\abexto\yepa\phpunit\Bootstrap::init('__DIR__');
 
 ```
 
