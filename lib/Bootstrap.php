@@ -29,7 +29,7 @@
 namespace abexto\yepa\phpunit;
 
 /**
- * Description of Bootstrap
+ * Initializes the phpunit-environment for yii
  *
  * @author Andreas Prucha, Abexto - Helicon Software Development
  */
