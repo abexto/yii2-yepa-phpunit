@@ -44,11 +44,36 @@ namespace abexto\yepa\phpunit;
 class TestCase extends \PHPUnit_Framework_TestCase
 {
     use MockApplicationTrait;
+    
+    /**
+     * @var bool    The application mockup is teared down before the first test of this test case 
+     */
+    protected $autoTearDownMockApplicationFirst = false;
 
     /**
      * @var bool Yii Mock Application gets teared down after each test automatically
      */
     protected $autoTearDownMockApplication = true;
+    
+    /**
+     * @var int Number of tests performed.
+     */
+    protected $testCounter = 1;
+    
+    /**
+     * Called before the first test
+     * 
+     * This method is called by [[setUp]] before the first test of this TestCase is performed
+     * 
+     * If [[$autoTearDownMockApplicationFirst]] is set to ``true``, an already created
+     * application mockup is destroyed by calling [[tearDownMockApplication]]
+     */
+    protected function setUpFirst()
+    {
+        if ($this->autoTearDownMockApplicationFirst && \Yii::$app) {
+            $this->tearDownMockApplication();
+        }
+    }
 
     /**
      * Called before each test for preparation
@@ -69,6 +94,9 @@ class TestCase extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
+        if ($this->testCounter < 2) {
+            $this->setupFirst();
+        }
         parent::setUp();
     }
 
@@ -84,6 +112,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
             $this->tearDownMockApplication();
         }
         parent::tearDown();
+        $this->testCounter++;
     }
 
 

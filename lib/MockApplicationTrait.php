@@ -35,18 +35,6 @@ namespace abexto\yepa\phpunit;
  */
 trait MockApplicationTrait
 {
-    /**
-     * Returns the default configuration for all Yii mock applications
-     */
-    protected function getMockApplicationDefaultConfig()
-    {
-        return [
-            'id' => 'testapp',
-            'basePath' => Bootstrap::$basePath,
-            'vendorPath' => Bootstrap::$vendorPath,
-            'runtimePath' => Bootstrap::$runtimePath,
-        ];
-    }
 
     /**
      * Destroys the current Mock Application instance
@@ -57,39 +45,28 @@ trait MockApplicationTrait
     }
 
     /**
-     * Override this function in order to let {@link setUp()} create a Yii Mock Application
-     * 
-     * <b>Example:</b>
-     * <pre>
-     * <code>
-     *      protected function setUpMockApplication()
-     *      {
-     *          self::mockConsoleApplication($myConfigurationArray);
-     *      }
-     * </code>
-     * </pre>
-     */
-    protected function setUpMockApplication()
-    {
-        $this->fail('Override ' . __CLASS__ . '::' . __METHOD__);
-    }
-
-    /**
      * Creates a Yii2 Application if necessary instance and sets Yii::$app
      * 
      * @param type $config Configuration array 
      * @param type $appClass Yii2 Application class to use
      * @param bool $recreate Set to true in order to destroy the previous instance
+     * 
+     * @throws \PHPUnit_Framework_Error if application mockup has already been created and $recreate is false
      */
     protected function mockApplication($config = [], $appClass, $recreate = false)
     {
         if (\Yii::$app && !$recreate) {
-            $this->fail('Yii mock application is already initialized');
+            throw new \PHPUnit_Framework_Error();
         }
         if ($recreate) {
             \Yii::$app = null;
         }
-        new $appClass(\yii\helpers\ArrayHelper::merge($this->getMockApplicationDefaultConfig(), $config));
+        new $appClass(\yii\helpers\ArrayHelper::merge([
+                    'id' => 'testapp',
+                    'basePath' => Bootstrap::$basePath,
+                    'vendorPath' => Bootstrap::$vendorPath,
+                    'runtimePath' => Bootstrap::$runtimePath,
+                        ], $config));
     }
 
     /**
@@ -113,5 +90,5 @@ trait MockApplicationTrait
     {
         $this->mockApplication($config, '\yii\console\Application', $recreate);
     }
-    
+
 }

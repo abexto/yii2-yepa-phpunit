@@ -29,14 +29,28 @@
 namespace abexto\yepa\phpunit\tests\unit;
 
 /**
- * Description of BootstrapTest
+ * Description of TestCaseNoAutoTearDownTest
  *
  * @author Andreas Prucha, Abexto - Helicon Software Development
  */
-class BootstrapTest extends \abexto\yepa\phpunit\TestCase
+class TestCaseNoAutoTearDownTest extends \abexto\yepa\phpunit\TestCase
 {
-    public function testRuntimePath()
+    
+    protected $autoTearDownMockApplication = false;
+    
+    public function testFirstStep()
     {
-        $this->assertStringEndsWith('/_output/runtime', \abexto\yepa\phpunit\Bootstrap::$runtimePath);
+        $this->tearDownMockApplication(); //
+        $this->mockWebApplication();
     }
+    
+    /**
+     * @depends testFirstStep     * 
+     */
+    public function testSecondStep()
+    {
+        $this->assertInstanceOf(\yii\base\Application::className(), \Yii::$app);
+    }
+    
+    
 }

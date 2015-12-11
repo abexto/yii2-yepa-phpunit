@@ -41,7 +41,6 @@ class TestCaseTest extends \abexto\yepa\phpunit\TestCase
         $this->assertTrue($this->autoTearDownMockApplication);
     }
     
-    
     public function testMockApplication()
     {
         self::mockApplication([], '\\yii\web\\Application');
@@ -79,6 +78,11 @@ class TestCaseTest extends \abexto\yepa\phpunit\TestCase
     public function testRuntimeAliasExists()
     {
         $this->assertNotFalse(\Yii::getAlias('@runtime', false));
+    }
+    
+    public function testTestAliasExists()
+    {
+        $this->assertNotFalse(\Yii::getAlias('tests', false));
     }
     
     
