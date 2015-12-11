@@ -24,6 +24,8 @@
         "psr-4": {
             "abexto\\yepa\\phpunit\\tests\\": "tests"
         }
+    },
+    "suggest": {
+        "phpunit/phpunit": "In order to have PhpUnit available for your project if not installed globally"
     }
-    ""
-}
+ }
