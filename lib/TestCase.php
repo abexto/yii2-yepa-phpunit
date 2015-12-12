@@ -41,7 +41,7 @@ namespace abexto\yepa\phpunit;
  *
  * @author Andreas Prucha, Helicon Software Development
  */
-class TestCase extends \PHPUnit_Framework_TestCase
+abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
     use MockApplicationTrait;
     
