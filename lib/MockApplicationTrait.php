@@ -62,6 +62,7 @@ trait MockApplicationTrait
             \Yii::$app = null;
         }
         new $appClass(\yii\helpers\ArrayHelper::merge([
+                    'aliases' =>  Bootstrap::$aliases,
                     'id' => 'testapp',
                     'basePath' => Bootstrap::$basePath,
                     'vendorPath' => Bootstrap::$vendorPath,

@@ -82,7 +82,7 @@ class TestCaseTest extends \abexto\yepa\phpunit\TestCase
     
     public function testTestAliasExists()
     {
-        $this->assertNotFalse(\Yii::getAlias('tests', false));
+        $this->assertNotFalse(\Yii::getAlias('@tests', false));
     }
     
     

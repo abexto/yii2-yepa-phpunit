@@ -94,7 +94,7 @@ class Bootstrap
         static::$runtimePath = (isset($params['runtimePath']) ? $params['runtimePath'] : static::$testPath.'/_output/runtime');
         
         static::$aliases = array_merge(
-                ['tests' => static::$testPath],
+                ['@tests' => static::$testPath],
                 (isset($params['aliases']) ? $params['aliases'] : []));
         
         
