@@ -90,12 +90,16 @@ class Bootstrap
         static::$testPath = $testPath;
         
         static::$basePath = (isset($params['basePath']) ? $params['basePath'] : static::$testPath);
-        static::$aliases = (isset($params['aliases']) ? $params['aliases'] : []);
         static::$vendorPath = (isset($params['vendorPath']) ? $params['vendorPath'] : ABEXTO_YEPA_PHPUNIT_VENDOR_DIR);
         static::$runtimePath = (isset($params['runtimePath']) ? $params['runtimePath'] : static::$testPath.'/_output/runtime');
         
+        static::$aliases = array_merge(
+                ['tests' => static::$testPath],
+                (isset($params['aliases']) ? $params['aliases'] : []));
+        
+        
         if (!isset($params['yii']) || $params['yii'] !== false) {
-            require_once(isset($params['yii']) ? $params['yii'] : static::$vendorPath.'//yiisoft/yii2/Yii.php');
+            require_once(isset($params['yii']) ? $params['yii'] : static::$vendorPath.'/yiisoft/yii2/Yii.php');
         }
     }
     
