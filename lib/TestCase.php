@@ -58,7 +58,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * @var int Number of tests performed.
      */
-    protected $testCounter = 1;
+    protected static $testCounter = 1;
     
     /**
      * Called before the first test
@@ -94,7 +94,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        if ($this->testCounter < 2) {
+        if (static::$testCounter < 2) {
             $this->setupFirst();
         }
         parent::setUp();
@@ -112,7 +112,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             $this->tearDownMockApplication();
         }
         parent::tearDown();
-        $this->testCounter++;
+        static::$testCounter++;
     }
 
 
